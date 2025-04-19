@@ -11,6 +11,12 @@ const inter = Inter({ subsets: ["cyrillic"] })
 export const metadata = {
   title: "Paparrot",
   description: "Мои публичные заметки о путешествиях, книгах и моей жизни",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon_128x128.png',
+  },
+  manifest: '/manifest.json'
 }
 
 interface RootLayoutProps {
