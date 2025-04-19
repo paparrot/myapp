@@ -2,7 +2,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-    uri: 'https://ksubbotin.ru/graphql', // Твой WPGraphQL endpoint
+    uri: 'https://api.ksubbotin.ru/graphql', // Твой WPGraphQL endpoint
     cache: new InMemoryCache(),
 });
 

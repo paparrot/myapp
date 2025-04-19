@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { GraphQLClient } from "graphql-request";
 import { GET_PAGE_BY_SLUG, GET_ALL_PAGE_SLUGS } from "@/lib/queries/pages";
 
-const client = new GraphQLClient("https://ksubbotin.ru/graphql");
+const client = new GraphQLClient("https://api.ksubbotin.ru/graphql");
 
 type Props = {
   params: { slug: string };

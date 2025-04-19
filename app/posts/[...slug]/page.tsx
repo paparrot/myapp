@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { gql, GraphQLClient } from 'graphql-request';
 
-const client = new GraphQLClient('https://ksubbotin.ru/graphql');
+const client = new GraphQLClient('https://api.ksubbotin.ru/graphql');
 
 const GET_POST_BY_SLUG = gql`
   query GetPostBySlug($slug: ID!) {

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import {GraphQLClient, gql} from "graphql-request";
 
-const client = new GraphQLClient('https://ksubbotin.ru/graphql');
+const client = new GraphQLClient('https://api.ksubbotin.ru/graphql');
 
 const query = gql`
   query GetPosts {
