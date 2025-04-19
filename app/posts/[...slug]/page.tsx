@@ -60,7 +60,7 @@ export default async function PostPage({ params }: Props) {
     }
 
     return (
-        <article className="py-6 prose dark:prose-invert">
+        <article className="py-6 overflow-hidden prose dark:prose-invert">
             <h1 className="mb-2" dangerouslySetInnerHTML={{ __html: post.title}} />
             <hr className="my-4"/>
             <div dangerouslySetInnerHTML={{ __html: post.content}}></div>

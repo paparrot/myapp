@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@/components/analytics"
 import { ModeToggle } from "@/components/mode-toggle"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["cyrillic"] })
 
@@ -25,7 +26,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body
         className={`antialiased min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 ${inter.className}`}
       >
@@ -33,10 +34,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="max-w-2xl mx-auto py-10 px-4">
             <header>
               <div className="flex items-center justify-between">
-                <ModeToggle />
-                <nav className="ml-auto text-sm font-medium space-x-6">
-                  <Link href="/">Посты</Link>
-                  <Link href="/about">Обо мне</Link>
+                <Image width={32} height={32} className={"rounded-lg"} src={"/logo.png"} alt={"Paparrot"} />
+                <nav className="ml-auto text-sm flex font-medium space-x-6">
+                  <Link className={"block"} href="/">Посты</Link>
+                  <Link className={"block"} href="/about">Обо мне</Link>
+                  <ModeToggle />
                 </nav>
               </div>
             </header>

@@ -25,6 +25,7 @@ type Post = {
     date: string;
 };
 
+export const revalidate = 60;
 
 export default async function Home() {
     const data = await client.request<{ posts: { nodes: Post[] } }>(query);
