@@ -27,10 +27,17 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ru">
-      <body
+    <head>
+      <meta name="theme-color" content="#ff6600"/>
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+      <meta name="theme-color" content="#ff6600" media="(prefers-color-scheme: light)"/>
+      <meta name="theme-color" content="#ff6600" media="(prefers-color-scheme: dark)"/>
+    </head>
+    <body
         className={`antialiased min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 ${inter.className}`}
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    >
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="max-w-2xl mx-auto py-10 px-4">
             <header>
               <div className="flex items-center justify-between">
