@@ -16,6 +16,8 @@ type Page = {
   slug: string;
 };
 
+export const revalidate = 60;
+
 export default async function Page({ params }: Props) {
   const { slug } = params;
 
