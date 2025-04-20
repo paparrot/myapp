@@ -74,14 +74,14 @@ export default function CommentForm({postId}: { postId: number }) {
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                     required
-                    className="border dark:border-slate-500 bg-gray-50 dark:bg-slate-950 rounded-lg p-2 w-full mb-2"
+                    className="border border-slate-500 dark:border-slate-500 bg-gray-50 dark:bg-slate-950 rounded-lg p-2 w-full mb-2"
                 />
                 <textarea
                     placeholder="Комментарий"
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                     required
-                    className="border dark:border-slate-500 bg-gray-50 dark:bg-slate-950 rounded-lg p-2 w-full mb-2"
+                    className="border border-slate-500 dark:border-slate-500 bg-gray-50 dark:bg-slate-950 rounded-lg p-2 w-full mb-2"
                 />
                 <button type="submit"
                         className="border border-slate-950 text-slate-950 dark:border-slate-500 dark:text-slate-50 rounded-lg px-4 py-2">
