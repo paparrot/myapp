@@ -1,6 +1,8 @@
 import {notFound} from "next/navigation"
 import {gql, GraphQLClient} from 'graphql-request';
 import Link from "next/link";
+import CommentForm from "@/components/comment-form";
+import Comments from "@/components/comment-list";
 
 const client = new GraphQLClient('https://api.ksubbotin.ru/graphql');
 
@@ -8,6 +10,7 @@ const GET_POST_BY_SLUG = gql`
   query GetPostBySlug($slug: ID!) {
     post(id: $slug, idType: SLUG) {
       id
+      databaseId
       title
       content
       date
@@ -34,6 +37,7 @@ type Props = {
 
 type Post = {
     id: string;
+    databaseId: number;
     title: string;
     content: string;
     slug: string;
@@ -85,23 +89,29 @@ export default async function PostPage({params}: Props) {
     const nextPost = sortedPosts[currentIndex + 1] ?? null;
 
     return (
-        <article className="py-6 overflow-hidden prose dark:prose-invert">
-            <h1 className="mb-2" dangerouslySetInnerHTML={{__html: post.title}}/>
-            <hr className="my-4"/>
-            <div dangerouslySetInnerHTML={{__html: post.content}}></div>
+        <div>
+            <article className="py-6 overflow-hidden prose dark:prose-invert">
+                <h1 className="mb-2" dangerouslySetInnerHTML={{__html: post.title}}/>
+                <hr className="my-4"/>
+                <div dangerouslySetInnerHTML={{__html: post.content}}></div>
 
-            <nav className="mt-10 flex justify-between text-sm">
-                {prevPost ? (
-                    <Link href={`/posts/${prevPost.slug}`} className="flex text-center justify-center w-full md:w-1/2 border px-3 py-3 rounded-lg">
-                        Предыдущий пост: {prevPost.title}
-                    </Link>
-                ) : <span/>}
-                {nextPost ? (
-                    <Link href={`/posts/${nextPost.slug}`} className="flex text-center justify-center w-full md:w-1/2 border px-3 py-3 rounded-lg">
-                        Следующий пост: {nextPost.title}
-                    </Link>
-                ) : <span/>}
-            </nav>
-        </article>
+                <nav className="mt-10 gap-2 flex justify-between text-sm">
+                    {prevPost ? (
+                        <Link href={`/posts/${prevPost.slug}`}
+                              className="flex text-center justify-center w-full md:w-1/2 border border-slate-950 dark:border-slate-500 px-3 py-4 rounded-xl">
+                            Предыдущий пост: {prevPost.title}
+                        </Link>
+                    ) : <span/>}
+                    {nextPost ? (
+                        <Link href={`/posts/${nextPost.slug}`}
+                              className="flex text-center justify-center w-full md:w-1/2 border border-slate-950 dark:border-slate-500 px-3 py-4 rounded-xl">
+                            Следующий пост: {nextPost.title}
+                        </Link>
+                    ) : <span/>}
+                </nav>
+            </article>
+            <CommentForm postId={post.databaseId}/>
+            <Comments postId={post.databaseId}/>
+        </div>
     );
 }

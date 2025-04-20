@@ -41,7 +41,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="max-w-2xl mx-auto py-10 px-4">
             <header>
               <div className="flex items-center justify-between">
-                <Image width={32} height={32} className={"rounded-lg"} src={"/logo.png"} alt={"Paparrot"} />
+                <Link href={'/'}>
+                  <Image width={48} height={48} className={"rounded-lg"} src={"/logo.png"} alt={"Paparrot"} />
+                </Link>
                 <nav className="ml-auto text-sm flex font-medium space-x-6">
                   <Link className={"block"} href="/">Посты</Link>
                   <Link className={"block"} href="/about">Обо мне</Link>
