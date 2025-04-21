@@ -7,7 +7,7 @@ const client = new GraphQLClient('https://api.ksubbotin.ru/graphql');
 
 const GET_COMMENTS = gql`
 {
-  post(id: 56, idType: DATABASE_ID) {
+  post(id: $postId, idType: DATABASE_ID) {
     id
     title
     comments(first: 100) {
@@ -53,7 +53,6 @@ export default function Comments({ postId }: { postId: number }) {
                         }
                     }
                 }>(GET_COMMENTS, { postId });
-                console.log(data);
                 setComments(data.post.comments?.nodes);
             } catch (err) {
                 console.error('Ошибка при загрузке комментариев:', err);
