@@ -5,3 +5,11 @@
 body {
     background-color: #ff6600;
 }
+
+.Toastify__toast {
+    @apply dark:bg-gray-800 bg-gray-50 text-gray-800 dark:text-gray-50;
+}
+
+.Toastify__close-button {
+    @apply text-gray-800 dark:text-gray-50;
+}

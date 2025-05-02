@@ -1,45 +1,61 @@
-import Link from "next/link"
-import {GraphQLClient, gql} from "graphql-request";
+// app/page.tsx или app/posts/page.tsx (серверный)
+import Home from '@/components/home'
+import { GraphQLClient, gql } from 'graphql-request'
 
-const client = new GraphQLClient('https://api.ksubbotin.ru/graphql');
+const client = new GraphQLClient('https://api.ksubbotin.ru/graphql')
 
 const query = gql`
-  query GetPosts {
-    posts(first: 10) {
-      nodes {
-        id
-        title
-        excerpt
-        slug
-        date
-      }
+    query GetPosts {
+        posts(first: 100) {
+            nodes {
+                id
+                title
+                excerpt
+                slug
+                date
+                content
+                categories {
+                    nodes {
+                        name
+                    }
+                }
+                tags {
+                    nodes {
+                        name
+                    }
+                }
+            }
+        }
     }
-  }
-`;
+`
+
+export const revalidate = 60
+
+type Term = { name: string }
 
 type Post = {
-    id: string;
-    title: string;
-    excerpt: string;
-    slug: string;
-    date: string;
-};
+    id: string
+    title: string
+    excerpt: string
+    slug: string
+    date: string
+    formattedDate: string
+    content: string
+    categories: { nodes: Term[] }
+    tags: { nodes: Term[] }
+}
 
-export const revalidate = 60;
+type PostWithFormattedDate = Post & {
+    formattedDate: string
+}
 
-export default async function Home() {
-    const data = await client.request<{ posts: { nodes: Post[] } }>(query);
+export default async function Page() {
+    const data = await client.request<{ posts: { nodes: Post[] } }>(query)
 
-    return (
-        <div className="prose dark:prose-invert">
-            {data.posts.nodes.map((post: Post) => (
-                <article key={post.id}>
-                    <Link href={`posts/${post.slug}`}>
-                        <h2 dangerouslySetInnerHTML={{__html: post.title}}/>
-                    </Link>
-                    <div dangerouslySetInnerHTML={{__html: post.excerpt}}></div>
-                </article>
-            ))}
-        </div>
-    )
+    const posts = data.posts.nodes.map(post => ({
+        ...post,
+        formattedDate: new Date(post.date).toLocaleDateString('ru-RU')
+    }))
+
+    return <Home posts={posts} />
 }

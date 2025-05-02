@@ -6,6 +6,7 @@ import { Analytics } from "@/components/analytics"
 import { ModeToggle } from "@/components/mode-toggle"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Image from "next/image";
+import {ToastContainer} from "react-toastify";
 
 const inter = Inter({ subsets: ["cyrillic"] })
 
