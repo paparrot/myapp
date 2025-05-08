@@ -54,6 +54,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 }
 
+export const revalidate: number = 60;
+
 export default async function PostPage({params}: Props) {
     const slug = params.slug.join('/');
     try {
