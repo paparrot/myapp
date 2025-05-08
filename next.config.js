@@ -10,7 +10,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['telegra.ph', 'api.ksubbotin.ru', 'pexels.com', 'unsplash.com'],
+    domains: ['telegra.ph', 'api.ksubbotin.ru', 'unsplash.com'],
   },
 };
 
