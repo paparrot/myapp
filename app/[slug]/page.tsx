@@ -1,7 +1,7 @@
 // app/pages/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import { GraphQLClient } from "graphql-request";
-import { GET_PAGE_BY_SLUG, GET_ALL_PAGE_SLUGS } from "@/lib/queries/pages";
+import { GET_PAGE_BY_SLUG, GET_ALL_PAGE_SLUGS } from "@/lib/graphql/queries";
 
 const client = new GraphQLClient("https://api.ksubbotin.ru/graphql");
 

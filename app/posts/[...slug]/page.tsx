@@ -38,11 +38,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                 url: `https://ksubbotin.ru/posts/${post.slug}`,
                 type: 'article',
                 publishedTime: post.date,
+                images: [
+                    {
+                        url: post.featuredImage?.node?.sourceUrl || 'https://ksubbotin.ru/logo.png',
+                        width: 1200,
+                        height: 630,
+                        alt: post.title,
+                    }
+                ],
             },
             twitter: {
                 card: 'summary_large_image',
                 title: post.title,
                 description,
+                images: [post.featuredImage?.node?.sourceUrl || 'https://ksubbotin.ru/logo.png'],
             },
         };
     } catch (err) {

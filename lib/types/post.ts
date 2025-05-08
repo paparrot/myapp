@@ -6,6 +6,11 @@ export type Post = {
     excerpt: string;
     slug: string;
     date: string;
+    featuredImage?: {
+        node: {
+            sourceUrl: string;
+        };
+    };
 };
 
 export type Props = {
