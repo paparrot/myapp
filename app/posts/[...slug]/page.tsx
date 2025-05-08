@@ -8,6 +8,51 @@ import PostNavigation from '@/components/posts/navigation';
 import LikeButton from '@/components/posts/like-button';
 import CommentForm from '@/components/posts/comment-form';
 import Comments from '@/components/posts/comment-list';
+import {Metadata} from "next";
+
+const stripHtml = (html: string): string => {
+    return html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 160);
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const slug = params.slug.join('/');
+    try {
+        const data = await client.request<{ post: Post | null }>(GET_POST_BY_SLUG, { slug });
+        const post = data.post;
+
+        if (!post) {
+            return {
+                title: 'Пост не найден',
+                description: 'Страница не найдена',
+            };
+        }
+
+        const description = stripHtml(post.excerpt);
+
+        return {
+            title: `${post.title} | Paparrot`,
+            description,
+            openGraph: {
+                title: post.title,
+                description,
+                url: `https://ksubbotin.ru/posts/${post.slug}`,
+                type: 'article',
+                publishedTime: post.date,
+            },
+            twitter: {
+                card: 'summary_large_image',
+                title: post.title,
+                description,
+            },
+        };
+    } catch (err) {
+        console.error('Error generating metadata:', err);
+        return {
+            title: 'Ошибка',
+            description: 'Не удалось загрузить пост',
+        };
+    }
+}
 
 export default async function PostPage({params}: Props) {
     const slug = params.slug.join('/');

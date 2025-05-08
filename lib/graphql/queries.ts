@@ -9,6 +9,7 @@ export const GET_POST_BY_SLUG = gql`
             content
             date
             slug
+            excerpt
         }
     }
 `;
@@ -20,6 +21,7 @@ export const GET_ALL_POSTS = gql`
                 slug
                 title
                 date
+                excerpt
             }
         }
     }
