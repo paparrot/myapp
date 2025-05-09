@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Analytics } from '@/components/analytics';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Header from '@/components/common/header';
+import { headers } from 'next/headers';
 
 const inter = Inter({ subsets: ['cyrillic'] });
 
@@ -23,6 +24,19 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const headersList = headers();
+  const userAgent = headersList.get('user-agent') || '';
+  const isTelegramBot = userAgent.includes('TelegramBot');
+
+  if (isTelegramBot) {
+    <html lang="ru">
+        <head title={metadata.title} />
+        <body>
+          {children}
+        </body>
+      </html>
+  }
+
   return (
       <html lang="ru">
       <head title={metadata.title}>
