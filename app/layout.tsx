@@ -34,6 +34,24 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
         <meta name="theme-color" content="#ff6600" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#ff6600" media="(prefers-color-scheme: dark)" />
+        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+        <script
+          defer
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.OneSignalDeferred = window.OneSignalDeferred || [];
+              OneSignalDeferred.push(async function(OneSignal) {
+                await OneSignal.init({
+                  appId: "060aa443-90ff-4428-914f-2b9fae7b0c60",
+                  notifyButton: {
+                    enable: true,
+                  },
+                  allowLocalhostAsSecureOrigin: true
+                });
+              });
+            `,
+          }}
+        />
       </head>
       <body
           className={`antialiased min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 ${inter.className}`}
