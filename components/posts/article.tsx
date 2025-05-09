@@ -7,7 +7,7 @@ type ArticleProps = {
 
 export default function Article({ post, processedContent }: ArticleProps) {
     return (
-        <article className="py-6 overflow-hidden prose dark:prose-invert max-w-none">
+        <article className="article__content py-6 overflow-hidden prose dark:prose-invert max-w-none">
             <div className="flex items-center justify-between">
                 <h1 className="mb-2" dangerouslySetInnerHTML={{ __html: post.title }} />
                 <span>{new Date(post.date).toLocaleDateString('ru-RU')}</span>

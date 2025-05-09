@@ -34,8 +34,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
         <meta name="theme-color" content="#ff6600" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#ff6600" media="(prefers-color-scheme: dark)" />
-        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-        
       </head>
       <body
           className={`antialiased min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 ${inter.className}`}

@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             title: `${post.title} | Paparrot`,
             description,
             openGraph: {
+                siteName: "Paparrot",
                 title: post.title,
                 description,
                 url: `https://ksubbotin.ru/posts/${post.slug}`,
@@ -53,6 +54,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                 description,
                 images: [post.featuredImage?.node?.sourceUrl || 'https://ksubbotin.ru/logo.png'],
             },
+            other: {
+                'telegram:channel': "@ksubbotin_blog",
+                'tg:site_verification': 'g7j8/rPFXfhyrq5q0QQV7EsYWv4=',
+                'article:published_time': post.date,
+                'article:author': 'Клим Субботин'
+            }
         };
     } catch (err) {
         console.error('Error generating metadata:', err);
@@ -90,7 +97,7 @@ export default async function PostPage({params}: Props) {
         const processedContent = processContent(post.content);
 
         return (
-            <div className="space-y-6">
+            <div className="article space-y-6">
                 <Article post={post} processedContent={processedContent}/>
                 <LikeButton postId={post.databaseId} postSlug={post.slug} postTitle={post.title}/>
                 <PostNavigation prevPost={prevPost} nextPost={nextPost}/>
