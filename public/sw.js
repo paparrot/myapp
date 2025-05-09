@@ -10,6 +10,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+importScripts('https://cdn.onesignal.com/sdks/web/v16/OneSignalSDKWorker.js');
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "060aa443-90ff-4428-914f-2b9fae7b0c60",
+      safari_web_id: "web.onesignal.auto.42873e37-42b9-4e5d-9423-af83e9e44ff4",
+      notifyButton: {
+        enable: true,
+      },
+    });
+  });
 
 // If the loader is already loaded, just stop.
 if (!self.define) {
